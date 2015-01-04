@@ -8,7 +8,6 @@ import (
 	"text/template"
 
 	"github.com/kyokomi/gogen"
-	"github.com/ttacon/chalk"
 )
 
 var (
@@ -41,7 +40,7 @@ func main() {
 	flag.Parse()
 
 	if file == "" {
-		fmt.Println(chalk.Red.Color("No file to parse."))
+		fmt.Println("No file to parse.")
 		os.Exit(1)
 	}
 
@@ -50,7 +49,7 @@ func main() {
 	err := g.DoAllTemplate(sampleTemplate)
 
 	if err != nil {
-		fmt.Println(chalk.Red.Color(err.Error()))
+		fmt.Println(err.Error())
 		os.Exit(1)
 	}
 }
