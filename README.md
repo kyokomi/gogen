@@ -43,6 +43,8 @@ func main() {
 $ go install github.com/kyokomi/gogen/example/genexample
 ```
 
+[genexample source](https://github.com/kyokomi/gogen/blob/master/example/genexample/main.go)
+
 ### generate
 
 ```
