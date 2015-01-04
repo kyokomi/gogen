@@ -14,9 +14,9 @@ import (
 	"github.com/philhofer/msgp/gen"
 	"github.com/philhofer/msgp/parse"
 	"github.com/ttacon/chalk"
-	"github.com/k0kubun/pp"
 )
 
+// Generator go generateの中核
 type Generator struct {
 	// input file (or directory)
 	inFile string
@@ -26,6 +26,7 @@ type Generator struct {
 	imports []string
 }
 
+// NewGenerator Generatorを生成する
 func NewGenerator(inFile, outFile, pkgName string, imports ...string) *Generator {
 	return &Generator{
 		inFile:  inFile,
@@ -35,14 +36,17 @@ func NewGenerator(inFile, outFile, pkgName string, imports ...string) *Generator
 	}
 }
 
+// GenerateFunc generateするロジック
 type GenerateFunc func(w io.Writer, p *gen.Ptr) error
 
+// DoAllTemplate templateを元にgenerateする
 func (g Generator) DoAllTemplate(t *template.Template) error {
 	return g.DoAll(func(w io.Writer, p *gen.Ptr) error {
 		return execAndFormat(t, w, p)
 	})
 }
 
+// DoAll GenerateFuncを元にgenerateする
 func (g Generator) DoAll(executeFunc GenerateFunc) error {
 	var (
 		outwr *bufio.Writer // location to write methods
@@ -83,8 +87,6 @@ func (g Generator) DoAll(executeFunc GenerateFunc) error {
 			continue
 		}
 
-		pp.Println(p)
-
 		if err := executeFunc(outwr, p); err != nil {
 			fmt.Println(err)
 			continue
@@ -112,7 +114,7 @@ func createNewFileName(pkgName string, outFile string, gofile string) string {
 	if outFile != "" {
 		newfile = outFile
 		if pre := strings.TrimPrefix(outFile, gofile); len(pre) > 0 &&
-				!strings.HasSuffix(outFile, ".go") {
+			!strings.HasSuffix(outFile, ".go") {
 			newfile = filepath.Join(gofile, outFile)
 		}
 	} else {

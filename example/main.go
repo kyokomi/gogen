@@ -1,5 +1,6 @@
 package main
 
+// Hoge hoge
 //go:generate genexample
 type Hoge struct {
 	Name    string
@@ -10,8 +11,8 @@ type Hoge struct {
 func main() {
 
 	h := Hoge{
-		Name: "hoge",
-		Num: 1,
+		Name:    "hoge",
+		Num:     1,
 		Message: "test",
 	}
 	h.Sample()
