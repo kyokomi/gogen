@@ -3,32 +3,32 @@ gogen
 
 gogen is a struct base [go generate](https://golang.org/doc/go1.4#gogenerate) library.
 
-# Usage
+## Usage
 
 ```
 $ go get github.com/kyokomi/gogen
 ```
 
-# Example
+## Example
 
-## generator install
+### generator install
 
 ```
 $ go install github.com/kyokomi/gogen/example/genexample
 ```
 
-## generate
+### generate
 
 ```
 $ cd ./example
 $ go generate
 ```
 
-## output
+### output
 
 [main_gen.go](https://github.com/kyokomi/gogen/blob/master/example/main_gen.go)
 
-# TODO
+## TODO
 
 - [ ] paser部分で[msgp/parse](https://github.com/philhofer/msgp/tree/master/parse)を使うのをやめる
 - [ ] gen構造体で[msgp/gen](https://github.com/philhofer/msgp/tree/master/gen)を使うのをやめる
@@ -36,6 +36,6 @@ $ go generate
 - [ ] testコードを書く
 - [ ] documentを書く
 
-# LICENSE
+## LICENSE
 
 [MIT](https://github.com/kyokomi/gogen/blob/master/LICENSE)
