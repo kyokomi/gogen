@@ -21,39 +21,11 @@ var (
 
 var (
 	baseTemplateText = `
-// DecodeMsg implements the msgp.Decodable interface
-func ({{.Varname}} *{{.Value.Struct.Name}}) DecodeMsg(dc *msgp.Reader) (err error) {
-	{{if not .Value.Struct.AsTuple}}var field []byte; _ = field{{end}}
-	{{if .Value.Struct.AsTuple}}
-	{ {{/* tuples get their own blocks so that we don't clobber 'ssz'*/}}
-		var ssz uint32
-		ssz, err = dc.ReadArrayHeader()
-		if err != nil {
-			return
-		}
-		if ssz != {{len .Value.Struct.Fields}} {
-			err = msgp.ArrayError{Wanted: {{len .Value.Struct.Fields}}, Got: ssz}
-			return
-		}
-		{{range .Value.Struct.Fields}}{{template "ElemTempl" .Value.Struct.FieldElem}}{{end}}
-	}
-	{{else}}
-	var isz uint32
-	isz, err = dc.ReadMapHeader()
-	if err != nil {
-		return
-	}
-	for xplz:=uint32(0); xplz<isz; xplz++ {
-		field, err = dc.ReadMapKey(field)
-		if err != nil {
-			return
-		}
-
-		// TODO:
-	}
+// Sample sample code
+func ({{.Varname}} *{{.Value.Struct.Name}}) Sample() {
+	{{range .Value.Struct.Fields}}
+	fmt.Println({{.FieldElem.Varname}})
 	{{end}}
-
-	return
 }
 `
 	sampleTemplate = template.Must(template.New("base").Parse(baseTemplateText))
@@ -73,7 +45,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	g := gogen.NewGenerator(file, out, pkg, "github.com/philhofer/msgp/msgp")
+	g := gogen.NewGenerator(file, out, pkg, "fmt")
 
 	err := g.DoAllTemplate(sampleTemplate)
 

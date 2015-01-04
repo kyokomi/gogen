@@ -14,6 +14,7 @@ import (
 	"github.com/philhofer/msgp/gen"
 	"github.com/philhofer/msgp/parse"
 	"github.com/ttacon/chalk"
+	"github.com/k0kubun/pp"
 )
 
 type Generator struct {
@@ -78,12 +79,11 @@ func (g Generator) DoAll(executeFunc GenerateFunc) error {
 	for _, el := range elems {
 
 		p, ok := el.(*gen.Ptr)
-		fmt.Println(p, ok, !ok || p.Value.Type() != gen.StructType, p.Value.Type(), gen.StructType)
 		if !ok || p.Value.Type() != gen.StructType {
 			continue
 		}
 
-		fmt.Println(p.Value.TypeName())
+		pp.Println(p)
 
 		if err := executeFunc(outwr, p); err != nil {
 			fmt.Println(err)

@@ -9,4 +9,10 @@ type Hoge struct {
 
 func main() {
 
+	h := Hoge{
+		Name: "hoge",
+		Num: 1,
+		Message: "test",
+	}
+	h.Sample()
 }

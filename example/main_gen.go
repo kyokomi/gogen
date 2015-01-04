@@ -1,28 +1,17 @@
 package main
 
 import (
-	"github.com/philhofer/msgp/msgp"
+	"fmt"
 )
 
 
-// DecodeMsg implements the msgp.Decodable interface
-func (z *Hoge) DecodeMsg(dc *msgp.Reader) (err error) {
-	var field []byte
-	_ = field
+// Sample sample code
+func (z *Hoge) Sample() {
 
-	var isz uint32
-	isz, err = dc.ReadMapHeader()
-	if err != nil {
-		return
-	}
-	for xplz := uint32(0); xplz < isz; xplz++ {
-		field, err = dc.ReadMapKey(field)
-		if err != nil {
-			return
-		}
+	fmt.Println(z.Name)
 
-		// TODO:
-	}
+	fmt.Println(z.Num)
 
-	return
+	fmt.Println(z.Message)
+
 }

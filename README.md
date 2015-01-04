@@ -11,6 +11,32 @@ $ go get github.com/kyokomi/gogen
 
 ## Example
 
+### main.go
+
+[main.go](https://github.com/kyokomi/gogen/blob/master/example/main.go)
+
+```go
+package main
+
+//go:generate genexample
+type Hoge struct {
+	Name    string
+	Num     int
+	Message string
+}
+
+func main() {
+
+	h := Hoge{
+		Name: "hoge",
+		Num: 1,
+		Message: "test",
+	}
+	h.Sample()
+}
+```
+
+
 ### generator install
 
 ```
@@ -27,6 +53,35 @@ $ go generate
 ### output
 
 [main_gen.go](https://github.com/kyokomi/gogen/blob/master/example/main_gen.go)
+
+```
+package main
+
+import (
+	"fmt"
+)
+
+
+// Sample sample code
+func (z *Hoge) Sample() {
+
+	fmt.Println(z.Name)
+
+	fmt.Println(z.Num)
+
+	fmt.Println(z.Message)
+
+}
+```
+
+### Run Sample
+
+```
+$ go run main.go main_gen.go
+hoge
+1
+test
+```
 
 ## TODO
 
