@@ -30,8 +30,8 @@ $ go generate
 
 # TODO
 
-- [ ] paser部分で[msgp/paser](https://github.com/philhofer/msgp)を使うのをやめる
-- [ ] gen構造体で[msgp/gen](https://github.com/philhofer/msgp)を使うのをやめる
+- [ ] paser部分で[msgp/parse](https://github.com/philhofer/msgp/tree/master/parse)を使うのをやめる
+- [ ] gen構造体で[msgp/gen](https://github.com/philhofer/msgp/tree/master/gen)を使うのをやめる
 - [ ] `go generate --debug`でログがでるようにする（今は全部でてる）
 - [ ] testコードを書く
 - [ ] documentを書く
